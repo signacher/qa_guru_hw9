@@ -54,6 +54,6 @@ class RegistrationPage:
     def submit_form(self):
         browser.element('#submit').perform(command.js.click)
 
-    def assert_user_info(self, *values):
+    def should_user_data(self, *values):
         browser.element('.table').all('td').even.should(
             have.exact_texts(values))

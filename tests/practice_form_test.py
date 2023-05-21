@@ -30,7 +30,7 @@ def test_student_registration_form():
 
     # THEN
 
-    registration_page.assert_user_info(
+    registration_page.should_user_data(
             'Ivan Ivanov',
             'name@example.ru',
             'Male',
