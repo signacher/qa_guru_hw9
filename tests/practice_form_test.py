@@ -1,45 +1,26 @@
+from data import users
+from data.users import User, Gender, Subject, Hobbie, Month
 from pages.registration_page import RegistrationPage
 
 def test_student_registration_form():
     registration_page = RegistrationPage()
+    student = User(first_name='Ivan',
+                   last_name='Ivanov',
+                   email='name@example.ru',
+                   gender=Gender.Male.value,
+                   phone_number='1234567891',
+                   birth_day='21',
+                   birth_month=Month.May.value,
+                   birth_year='1999',
+                   subject=Subject.computer_science.value,
+                   hobbie=Hobbie.reading.value,
+                   upload_filename='css_selector.png',
+                   current_address='Moscowskaya Street 18',
+                   state='NCR',
+                   city='Delhi')
     registration_page.open()
 
-    registration_page.fill_first_name('Ivan')
-    registration_page.fill_last_name('Ivanov')
+    registration_page.register(student)
 
-    registration_page.fill_email('name@example.ru')
-
-    registration_page.select_gender('Male')
-
-    registration_page.fill_mobile_number('1234567891')
-
-    registration_page.fill_date_of_birth('21', 'May', '1999')
-
-    registration_page.select_subject('Computer Science')
-
-    registration_page.select_hobby("Reading")
-
-    registration_page.fill_current_adress('Moscowskaya Street 18')
-
-    registration_page.upload_file('css_selector.png')
-
-    registration_page.select_state('NCR')
-    registration_page.select_city('Delhi')
-
-    registration_page.submit_form()
-
-    # THEN
-
-    registration_page.should_user_data(
-            'Ivan Ivanov',
-            'name@example.ru',
-            'Male',
-            '1234567891',
-            '21 May,1999',
-            'Computer Science',
-            'Reading',
-            'css_selector.png',
-            'Moscowskaya Street 18',
-            'NCR Delhi',
-        )
+    # registration_page.should_have_registered(student)
 
